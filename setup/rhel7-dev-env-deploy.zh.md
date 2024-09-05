@@ -110,6 +110,7 @@ export PATH=$HOME/.local/perl5/bin:$PATH
 export PERL5LIB=$HOME/.local/perl5/lib/perl5:$HOME/.local/perl5/lib64/perl5:$PERL5LIB
 export PERL5LIB=$HOME/.local/perl5/share/perl5:$PERL5LIB
 
+## 安装 OpenSSL
 cd $HOME/src
 wget https://github.com/openssl/openssl/releases/download/openssl-3.3.1/openssl-3.3.1.tar.gz
 tar -zxvf openssl-3.3.1.tar.gz
@@ -119,34 +120,17 @@ make -j$(nproc)
 make install
 
 export PKG_CONFIG_PATH=$HOME/.local/openssl/lib64/pkgconfig:$PKG_CONFIG_PATH # 配置 pkg-config 路径
-
-## 安装模块，实际上由于前面安装了 perl-devel，故不需要了
-cd $HOME/src
-wget https://cpan.metacpan.org/authors/id/E/EX/EXODIST/Test-Simple-1.302201.tar.gz
-tar -xvf Test-Simple-1.302201.tar.gz
-cd Test-Simple-1.302201
-
-### 安装 ExtUtils::MakeMaker 模块，
-cd $HOME/src
-wget https://cpan.metacpan.org/authors/id/B/BI/BINGOS/ExtUtils-MakeMaker-7.70.tar.gz
-tar -xvf ExtUtils-MakeMaker-7.70.tar.gz
-cd ExtUtils-MakeMaker-7.70
-perl Makefile.PL PREFIX=$HOME/.local/perl5
-make
-make test
-make install
-
 ## 设置环境变量
 echo 'export PERL5LIB=$HOME/.local/perl5/share/perl5:$PERL5LIB' >> ~/.bashrc
 
-wget https://cpan.metacpan.org/authors/id/E/EX/EXODIST/Test-Simple-1.302201.tar.gz
-wget https://cpan.metacpan.org/authors/id/B/BI/BINGOS/IPC-Cmd-1.04.tar.gz
-wget https://cpan.metacpan.org/authors/id/B/BI/BINGOS/Params-Check-0.38.tar.gz
-wget https://cpan.metacpan.org/authors/id/J/JE/JESSE/Locale-Maketext-Simple-0.21.tar.gz
-wget https://cpan.metacpan.org/authors/id/B/BI/BINGOS/Module-Load-Conditional-0.74.tar.gz
-wget https://cpan.metacpan.org/authors/id/B/BI/BINGOS/Module-Load-0.36.tar.gz
-wget https://cpan.metacpan.org/authors/id/L/LE/LEONT/ExtUtils-ParseXS-3.51.tar.gz
-wget https://cpan.metacpan.org/authors/id/L/LE/LEONT/version-0.9932.tar.gz
+# wget https://cpan.metacpan.org/authors/id/E/EX/EXODIST/Test-Simple-1.302201.tar.gz
+# wget https://cpan.metacpan.org/authors/id/B/BI/BINGOS/IPC-Cmd-1.04.tar.gz
+# wget https://cpan.metacpan.org/authors/id/B/BI/BINGOS/Params-Check-0.38.tar.gz
+# wget https://cpan.metacpan.org/authors/id/J/JE/JESSE/Locale-Maketext-Simple-0.21.tar.gz
+# wget https://cpan.metacpan.org/authors/id/B/BI/BINGOS/Module-Load-Conditional-0.74.tar.gz
+# wget https://cpan.metacpan.org/authors/id/B/BI/BINGOS/Module-Load-0.36.tar.gz
+# wget https://cpan.metacpan.org/authors/id/L/LE/LEONT/ExtUtils-ParseXS-3.51.tar.gz
+# wget https://cpan.metacpan.org/authors/id/L/LE/LEONT/version-0.9932.tar.gz
 ```
 
 ### CMake
@@ -255,4 +239,7 @@ cd build
 cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=$HOME/.local/llvm17 -DLLVM_ENABLE_PROJECTS="clang;clang-tools-extra" -G "Unix Makefiles" ../llvm
 ```
 
+## VsCode 配置
+
+通过内外网交换，将所需要的 VsCode 插件安装在 Linux 开发机上，然后通过 vscode.remote 连接到 Linux 上，注意，`clangd` 插件要正常运行，不仅需要指定 `clangd` 插件的路径，还需要设置 `bash` 的 `LD_LIBRARY_PATH` 环境变量。
 

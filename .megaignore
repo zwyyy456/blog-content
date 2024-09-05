@@ -1,0 +1,10 @@
+# 忽略所有 .git 目录
+-dn:.git
+# 忽略所有 logs 目录
+-dn:logs
+# 忽略所有 dll 文件 dat 文件
+-fn:.dll
+-fn:.dat
+-fn:.db
+-fn:.mmdb
+-fn:.DS_Store

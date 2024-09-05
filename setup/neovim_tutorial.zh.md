@@ -184,6 +184,37 @@ return {
 
 即要求 `ssh` 连接到远程服务器，在远程服务器打开 `nvim` 时，`nvim` 复制的内容会自动同步到本地电脑的剪贴板。
 
+从 neovim 0.10.0 开始，neovim 自带了 osc52 插件，因此不再需要手动安装插件，只需要在 `~/.config/nvim/lua/config/options.lua` 中追加以下内容即可：
+
+```lua
+function my_paste(reg)
+  return function(lines)
+    --[ 返回 “” 寄存器的内容，用来作为 p 操作符的粘贴物 ]
+    local content = vim.fn.getreg('"')
+    return vim.split(content, "\n")
+  end
+end
+
+if vim.env.SSH_TTY then
+  --[ 当前环境为本地环境，也包括 wsl ]
+  opt.clipboard:append("unnamedplus")
+  vim.g.clipboard = {
+    name = "OSC 52",
+    copy = {
+      ["+"] = require("vim.ui.clipboard.osc52").copy("+"),
+      ["*"] = require("vim.ui.clipboard.osc52").copy("*"),
+    },
+    paste = {
+      --[ 小括号里面的内容可能是毫无意义的，但是保持原样可能看起来更好一点 ]
+      ["+"] = my_paste("+"),
+      ["*"] = my_paste("*"),
+    },
+  }
+end
+```
+
+> 本小节之后的内容已经不再需要。
+
 在配置文件 `nvim/lua/config/` 中创建文件：`osc52.lua`，追加内容为：
 
 ```lua
@@ -233,6 +264,10 @@ end
 ## ssh + tmux 的剪贴板同步
 
 如果远程服务器打开了 tmux，并在 tmux 中打开 neovim，那么还需要做一点额外配置，使得 neovim yank 的内容能同步到本地机器的剪贴板。
+
+在 `~/.tmux.conf` 中，添加 `set -s set-clipboard on` 即可。
+
+> 本节后续内容已不再需要。
 
 首先，编辑 `~/.tmux.conf`，追加内容 `set -g allow-passthrough on`，在安装 `osc52` 插件时，配置需要设置为 `tmux_passthrough = true`，对应“利用 lazy.nvim 安装并管理插件”部分的 `opts = {tmux_passthrough = true},`。
 
