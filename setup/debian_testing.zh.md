@@ -1,5 +1,5 @@
 ---
-title: "安装 Debian bookworm"
+title: "安装 Debian bookworm 桌面环境"
 date: 2022-11-12T09:58:14+08:00
 lastmod: 2022-11-12T09:58:14+08:00 #更新时间
 authors: ["zwyyy456"] #作者

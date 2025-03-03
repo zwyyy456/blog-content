@@ -34,7 +34,3 @@ Hugo 会自动为我们生成 `sitemap.xml` 文件，即站点地图，由于我
 ## Bing
 
 进入 Bing Webmaster Tools，可以直接从 Google Search Console 导入网站，提交站点地图的方法是类似的。
-
-## 为博客添加搜索功能
-
-我使用的博客主题是秉承简洁纯粹理念的 `hugo_coder` 主题，该主题不支持搜索功能，而我比较需要这个搜索功能，因此通过 Google 或者 Bing 的自定义搜索功能来为博客添加搜索功能是一个比较简单的做法，这里我使用的是 Bing 的自定义搜索功能。
