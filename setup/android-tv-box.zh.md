@@ -1,21 +1,26 @@
 ---
-title: "安卓电视盒子的折腾之旅"
-date: 2024-06-11T22:39:23+08:00
-lastmod: 2024-06-11T22:39:23+08:00 #更新时间
-authors: ["zwyyy456"] #作者
-categories: ["setup"]
-tags: ["atv", "fun"]
-description: "" #描述
-weight: # 输入 1 可以顶置文章，用来给文章展示排序，不填就默认按时间排序
-slug: ""
-draft: false # 是否为草稿
-comments: false #是否展示评论
-showToc: true # 显示目录
-TocOpen: true # 自动展开目录
-hidemeta: false # 是否隐藏文章的元信息，如发布日期、作者等
-disableShare: true # 底部不显示分享栏
-showbreadcrumbs: false #顶部显示当前路径
+title: 安卓电视盒子的折腾之旅
+slug: android-tv-box.zh
+date: '2025-03-03 23:25:43+08:00'
+lastmod: '2025-03-03 23:25:44+08:00'
+tags:
+  - atv
+  - fun
+categories:
+  - setup
+keywords: atv,fun
+authors: zwyyy456
+comments: true
+draft: false
+showToc: true
+hidemeta: false
+disableShare: true
+showbreadcrumbs: false
 ---
+
+
+
+
 
 ## 前言
 
@@ -71,6 +76,6 @@ showbreadcrumbs: false #顶部显示当前路径
 
 ## 参考
 
-[x98h pro盒子固件](https://www.znds.com/tv-1245405-1-1.html) 
+[x98h pro盒子固件](https://www.znds.com/tv-1245405-1-1.html)
 
 [slimboxtv: x98h-pro](https://slimboxtv.ru/x98h-pro/)
