@@ -58,11 +58,11 @@ endif
 就像 clangd 需要 `compile_commands.json`，sourcekit-lsp 也需要 `buildServer.json` 文件来理解项目，项目根目录下根据项目类型执行以下其中一条命令可以生成 `buildServer.json` 文件：
 
 ```bash
-xcode-build-server config -workspace *.xcworkspace -scheme <XXX> 
-xcode-build-server config -project *.xcodeproj -scheme <XXX>
+xcode-build-server config -workspace <xxx>.xcworkspace -scheme <XXX> 
+xcode-build-server config -project <xxx>.xcodeproj -scheme <XXX>
 ```
 
-`xcode-build-server` 可以使用 homebrew 安装。
+`xcode-build-server` 可以使用 homebrew 安装。具体有哪些 scheme 可以在 Xcode 中查看。
 
 ## 语法高亮
 
@@ -96,6 +96,22 @@ hi! link LspSemanticDecorator SublimePink
 ```
 
 即可实现基于 LSP 的语义高亮，我用的是 Monokai 主题，有自己喜欢的主题可以自定义颜色，也可以使用支持 LSP 语义高亮的主题。
+
+## 通过 InjectionNext 实现 View 的实时渲染
+
+升级到 macOS 26 之后，原先的 InjectionIII 已经不能用了，但是作者又推出了 InjectionNext 来实现实时渲染。具体方案如下：
+
+1. 下载并安装 App，然后 进入 `Build Settings -> Linking -> Other Linker Flags`。为 Debug 配置添加两个标志（注意：分两行写）：
+```sh
+-Xlinker
+-interposable
+```
+2. 完全退出 Xcode App，运行 InjectionNext，从菜单选择 Lauch Xcode 以启动 Xcode；
+3. 在 Xcode 项目中，通过 `File > Add Package Dependencies...` 添加 InjectionNext 的 Swift 包，添加 HotSwiftUI 和 InjectionNext 这两个包，注意都需要先 clone 到本地，再通过 Add local package 安装；
+4. 在 InjectionNext 的菜单项中，选择 `Preapre SwiftUI -> Entire Project`，然后在 Xcode 中运行项目，修改 View 的内容，然后 <D-s> 保存，就能实时看到修改了；
+5. 如果希望在外部编辑器例如 Vim 中修改了代码并保存后，也能实时更新 View，需要在 InjectionNext 的菜单中改为 watch project，project directory 设置为项目的根目录。
+
+> 最好先在 Xcode 中右键项目，在 Group 选项处把 group 转换为 folder。
 
 ## 结语
 
