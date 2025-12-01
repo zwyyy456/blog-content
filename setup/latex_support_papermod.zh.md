@@ -2,7 +2,6 @@
 title: "为 papermod 主题添加 Latex 支持"
 date: 2022-09-26T11:42:46+08:00
 lastmod: 2022-09-26T11:42:46+08:00
-draft: false
 tags: ["hugo", "geek", "tips"]
 categories: ["setup"]
 description: "" #描述
