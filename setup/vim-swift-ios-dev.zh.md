@@ -64,6 +64,8 @@ xcode-build-server config -project <xxx>.xcodeproj -scheme <XXX>
 
 `xcode-build-server` 可以使用 homebrew 安装。具体有哪些 scheme 可以在 Xcode 中查看。
 
+对于 swift package，xcode build server 并不能很好的支持，反而 swift 本身已经支持得很好了，直接 swift build 即可。 
+
 ## 语法高亮
 
 Vim 的语法高亮引擎已经十分陈旧了，对 Swift 的解析支持非常差劲，这里我们使用 LSP 的语义高亮来替代，注意前面 `yegappan.vim` 中要设置 `\   semanticHighlight: v:true,` 来开启语义高亮，在你的 vim 配置文件中，再添加以下内容：
